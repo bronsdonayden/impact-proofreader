@@ -6,14 +6,13 @@ body {
   padding: 20px;
 }
 
-header{
+header {
   text-align: center;
   margin-bottom: 20px;
   margin-top: 5px;
   font-size: 14px;
   color: #666;
   letter-spacing: 1px;
-  
 }
 
 h1 {
@@ -31,7 +30,7 @@ footer {
 
 main {
   display: flex;
-  gap: 20px
+  gap: 20px;
 }
 
 .Sidebar {
@@ -42,11 +41,8 @@ main {
   border-right: 1px solid #333;
 }
 
-.Viewer {
-  flex: 1;
-}
-
-.Tool-Group {
+/* Fixed: was .Tool-Group, now matches HTML */
+.toolGroup {
   margin-bottom: 15px;
 }
 
@@ -75,32 +71,30 @@ label {
 input[type="range"] {
   width: 100%;
 }
+
+/* Viewer sits next to the sidebar and centers its content */
+.Viewer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+/* This container holds both the image and canvas stacked */
+.canvasContainer {
+  position: relative;
+}
+
 #display {
   max-width: 100%;
   max-height: 80vh;
-  object-fit: contain;
+  display: block;
 }
 
-.Viewer {
-  flex: 1;
-  padding: 20px;
-  overflow-y: auto;
-}
-
-.imageGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 20px;
-}
-
-.imageGrid img {
-  width: 100%;
-  border-radius: 8px;
-  object-fit: cover;
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
-
-.imageGrid img:hover {
-  transform: scale(1.05);
+/* Canvas sits directly on top of the image */
+#overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
 }

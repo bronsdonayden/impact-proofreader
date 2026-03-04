@@ -16,75 +16,72 @@
   <main>
     
     <!-- Start Toolbar-->
-    <div class = "Sidebar">
+    <div class="Sidebar">
     
-   <!-- Start Viewer(Place where the image will be) The image loads just its on the side bar so we need to fix this and its size and  figure how to keep the image on the page. -->
-  <div class = "Viewer">
-    
-    <img id="display" src="" alt="Image could not load">
-    
-    <div class="canvasContainer">
-      <canvas id = "overlay"></canvas>
-    </div>
-  </div>
-  <!-- End Viewer-->
-    
-    <!-- File loading -->
-    <div class = "toolGroup">
-      <label for="masks">Load Masks </label>
-      <input type="file" id="masks" accept=".png" multiple>
-    </div>
+      <!-- File loading -->
+      <div class="toolGroup">
+        <label for="images">Load Images</label>
+        <input type="file" id="images" accept=".png" multiple>
+      </div>
 
-    <div class = "toolGroup">
-      <label for="images"> Load Images </label>
-      <input type="file" id="images" accept=".png" multiple>
+      <div class="toolGroup">
+        <label for="masks">Load Masks</label>
+        <input type="file" id="masks" accept=".png" multiple>
+      </div>
+
+      <!-- Overlay Options -->
+      <div class="toolGroup">
+        <select>
+          <option>No Overlay</option>
+          <option>Outline Only</option>
+          <option>Transparent Overlay</option>
+        </select>
+      </div>
+      
+      <!-- Image Interaction Options -->
+      <div class="toolGroup">
+        <button>Paint</button>
+        <button>Erase</button>
+      </div>
+
+      <!-- Dark Mode / Light Mode-->
+      <div class="toolGroup">
+        <label for="darkMode">Dark Mode</label>
+        <input type="checkbox" id="darkMode" class="toggle" checked>
+      </div>
+
+      <!-- Next Image Button -->
+      <div class="toolGroup">
+        <button id="nextButton">Confirm and Show Next Image</button>
+      </div>
+      
+      <!-- Change Contrast and Opacity Slider -->
+      <div class="toolGroup">
+        <label>Contrast</label>
+        <input type="range" min="0" max="255" value="128">
+        <label>Opacity</label>
+        <input type="range" min="0" max="255" value="128">
+      </div>
+
+      <!-- Zoom -->
+      <div class="toolGroup">
+        <label>Zoom</label>
+        <input type="range" min="1" max="5" value="1">
+      </div>
+
     </div>
+    <!-- End Toolbar-->
 
-    <!-- Overlay Options allow to [switch between no overlay, only outline, and transparent]
- -->
-    <div class = "toolGroup">
-      <select>
-        <option> No Overlay </option>
-        <option> Outline Only </option>
-        <option> Transparent Overlay </option>
-      </select>
+    <!-- Start Viewer -->
+    <div class="Viewer">
+      <div class="canvasContainer">
+        <img id="display" src="" alt="Image could not load">
+        <canvas id="overlay"></canvas>
+      </div>
     </div>
-    
-    <!-- Image Interaction Options -->
-    <div class = "toolGroup">
-      <button> Paint </button>
-      <button> Erase </button>
-    </div>
+    <!-- End Viewer-->
 
-
-    <!-- Dark Mode / Light Mode-->
-  <div class="toolGroup">
-    <label for="darkMode">Dark Mode</label>
-    <input type="checkbox" id="darkMode" class="toggle" checked>
-    <label for="darkmode" class="toggle-label"></label>
-  </div>
-
-    <!-- Next Image Button -->
-    <div class = "toolGroup">
-      <button id = "nextButton"> Confirm and Show Next Image </button>
-    </div>
-    
-    <!-- Change Contrast and Opacity Slider -->
-    <div class = "toolGroup">
-      <input type="range" min="0" max="255" value="128">
-      <input type="range" min="0" max="255" value="128">
-    </div>
-
-  <!-- Zoom -->
-  <div class = "toolGroup">
-    <input type="range" min="1" max="5" value="1">
-  </div>
-  </div>
-  <!-- End Toolbar-->
-
-  
   </main>
-
 
   <!-- Copyright because why not it makes the website seem super duper important-->
   <footer>
