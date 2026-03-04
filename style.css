@@ -1,5 +1,5 @@
 body {
-  background: #111;
+  background: white;
   color: #ccc;
   font-family: sans-serif;
   margin: 0;
@@ -9,8 +9,11 @@ body {
 header{
   text-align: center;
   margin-bottom: 20px;
-
-
+  margin-top: 5px;
+  font-size: 14px;
+  color: #666;
+  letter-spacing: 1px;
+  
 }
 
 h1 {
@@ -28,6 +31,7 @@ footer {
 
 main {
   display: flex;
+  gap: 20px
 }
 
 .Sidebar {
@@ -71,4 +75,32 @@ label {
 input[type="range"] {
   width: 100%;
 }
+#display {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+}
 
+.Viewer {
+  flex: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.imageGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.imageGrid img {
+  width: 100%;
+  border-radius: 8px;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.imageGrid img:hover {
+  transform: scale(1.05);
+}

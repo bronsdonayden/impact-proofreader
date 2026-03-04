@@ -3,13 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IMACT WEBAPP</title>
+  <title>IMPACT WEBAPP</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <header>
-    <h1>PROOFREADER</h1>
+    <h1>Kidney & Spleen Ultrasound Images</h1>
+    <p class="subtitle">Mask Proofreading & Overlay Viewer</p>
   </header>
 
   <main>
@@ -17,6 +18,16 @@
     <!-- Start Toolbar-->
     <div class = "Sidebar">
     
+   <!-- Start Viewer(Place where the image will be) The image loads just its on the side bar so we need to fix this and its size and  figure how to keep the image on the page. -->
+  <div class = "Viewer">
+    
+    <img id="display" src="" alt="Image could not load">
+    
+    <div class="canvasContainer">
+      <canvas id = "overlay"></canvas>
+    </div>
+  </div>
+  <!-- End Viewer-->
     
     <!-- File loading -->
     <div class = "toolGroup">
@@ -29,7 +40,8 @@
       <input type="file" id="images" accept=".png" multiple>
     </div>
 
-    <!-- Overlay Options -->
+    <!-- Overlay Options allow to [switch between no overlay, only outline, and transparent]
+ -->
     <div class = "toolGroup">
       <select>
         <option> No Overlay </option>
@@ -70,16 +82,7 @@
   </div>
   <!-- End Toolbar-->
 
-  <!-- Start Viewer(Place where the image will be)-->
-  <div class = "Viewer">
-    
-    <img id="display" src="" alt="Image could not load">
-    
-    <div class="canvasContainer">
-      <canvas id = "overlay"></canvas>
-    </div>
-  </div>
-  <!-- End Viewer-->
+  
   </main>
 
 
