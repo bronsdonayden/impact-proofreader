@@ -3,19 +3,87 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>My App</title>
+  <title>IMACT WEBAPP</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <header>
-    <h1>My App</h1>
+    <h1>PROOFREADER</h1>
   </header>
 
   <main>
-    <p>Hello, world.</p>
+    
+    <!-- Start Toolbar-->
+    <div class = "Sidebar">
+    
+    
+    <!-- File loading -->
+    <div class = "toolGroup">
+      <label for="masks">Load Masks </label>
+      <input type="file" id="masks" accept=".png" multiple>
+    </div>
+
+    <div class = "toolGroup">
+      <label for="images"> Load Images </label>
+      <input type="file" id="images" accept=".png" multiple>
+    </div>
+
+    <!-- Overlay Options -->
+    <div class = "toolGroup">
+      <select>
+        <option> No Overlay </option>
+        <option> Outline Only </option>
+        <option> Transparent Overlay </option>
+      </select>
+    </div>
+    
+    <!-- Image Interaction Options -->
+    <div class = "toolGroup">
+      <button> Paint </button>
+      <button> Erase </button>
+    </div>
+
+
+    <!-- Dark Mode / Light Mode-->
+  <div class="toolGroup">
+    <label for="darkMode">Dark Mode</label>
+    <input type="checkbox" id="darkMode" class="toggle" checked>
+    <label for="darkmode" class="toggle-label"></label>
+  </div>
+
+    <!-- Next Image Button -->
+    <div class = "toolGroup">
+      <button id = "nextButton"> Confirm and Show Next Image </button>
+    </div>
+    
+    <!-- Change Contrast and Opacity Slider -->
+    <div class = "toolGroup">
+      <input type="range" min="0" max="255" value="128">
+      <input type="range" min="0" max="255" value="128">
+    </div>
+
+  <!-- Zoom -->
+  <div class = "toolGroup">
+    <input type="range" min="1" max="5" value="1">
+  </div>
+  </div>
+  <!-- End Toolbar-->
+
+  <!-- Start Viewer(Place where the image will be)-->
+  <div class = "Viewer">
+    
+    <img id="display" src="" alt="Image could not load">
+    
+    <div class="canvasContainer">
+      <canvas id = "overlay"></canvas>
+    </div>
+  </div>
+  <!-- End Viewer-->
   </main>
 
+
+  <!-- Copyright because why not it makes the website seem super duper important-->
   <footer>
     <p>&copy; 2025</p>
   </footer>
