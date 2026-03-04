@@ -1,24 +1,3 @@
-// Element references
-const nextButton = document.getElementById('nextButton');
-const imageInput = document.getElementById('images');
-const maskInput = document.getElementById('masks');
-const overlay = document.getElementById('overlay');
-const ctx = overlay.getContext('2d', { willReadFrequently: true });
-const display = document.getElementById('display');
-const overlayMode = document.getElementById('overlayMode');
-
-// State
-let imageList = [];
-let maskList = [];
-let currentIndex = 0;
-
-// When the image finishes loading, resize canvas to match and update overlay
-display.onload = function() {
-  overlay.width = display.width;
-  overlay.height = display.height;
-  updateOverlay();
-};
-
 // Decides whether to draw mask, outline, or nothing based on dropdown
 function updateOverlay() {
   ctx.clearRect(0, 0, overlay.width, overlay.height);
@@ -158,41 +137,3 @@ function drawOutline() {
     ctx.putImageData(maskData, 0, 0);
   };
 }
-
-// Listens for when the user picks image files
-imageInput.addEventListener('change', function(event) {
-  imageList = [];
-
-  for (let i = 0; i < event.target.files.length; i++) {
-    const url = URL.createObjectURL(event.target.files[i]);
-    imageList.push(url);
-  }
-
-  currentIndex = 0;
-  display.src = imageList[currentIndex];
-});
-
-// Listens for when the user picks mask files
-maskInput.addEventListener('change', function(event) {
-  maskList = [];
-
-  for (let i = 0; i < event.target.files.length; i++) {
-    const url = URL.createObjectURL(event.target.files[i]);
-    maskList.push(url);
-  }
-
-  updateOverlay();
-});
-
-// Next button cycles to the next image and mask
-nextButton.addEventListener('click', function() {
-  if (imageList.length === 0) return;
-
-  currentIndex++;
-
-  if (currentIndex >= imageList.length) {
-    currentIndex = 0;
-  }
-
-  display.src = imageList[currentIndex];
-});
