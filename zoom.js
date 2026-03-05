@@ -1,12 +1,22 @@
+const contrastSlider = document.getElementById('contrastSlider');
+const ImageOpacitySlider = document.getElementById('ImageOpacitySlider');
+const OverlayOpacitySlider = document.getElementById('OverlayOpacitySlider');
+const zoomSlider = document.getElementById('zoomSlider');
+
 contrastSlider.addEventListener('input', () => {
-    img.style.filter = `contrast(${contrastSlider.value}%)`;
+    display.style.filter = `contrast(${contrastSlider.value}%)`;
   });
   
-  opacitySlider.addEventListener('input', () => {
-    img.style.opacity = opacitySlider.value / 255;
+  ImageOpacitySlider.addEventListener('input', () => {
+    display.style.opacity = ImageOpacitySlider.value / 255;
   });
+
+  OverlayOpacitySlider.addEventListener('input', () => {
+    overlay.style.opacity = OverlayOpacitySlider.value/255;
+  })
   
   zoomSlider.addEventListener('input', () => {
     const scale = zoomSlider.value;
-    img.style.transform = `scale(${scale})`;
+    display.style.transform = `scale(${scale})`;
+    overlay.style.transform = `scale(${scale})`;
   });
