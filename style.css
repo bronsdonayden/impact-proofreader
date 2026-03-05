@@ -43,7 +43,13 @@ main {
 
 /* Fixed: was .Tool-Group, now matches HTML */
 .toolGroup {
-  margin-bottom: 15px;
+  .toolGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 0;
+    width: 150px; /* fixed width for alignment */
+  }
 }
 
 button, select, input[type="file"] {
@@ -90,6 +96,7 @@ input[type="range"] {
   max-width: 100%;
   max-height: 80vh;
   display: block;
+  transform-origin: center center;
 }
 
 /* Canvas sits directly on top of the image */
@@ -97,4 +104,5 @@ input[type="range"] {
   position: absolute;
   top: 0;
   left: 0;
+  transform-origin: center center;
 }
