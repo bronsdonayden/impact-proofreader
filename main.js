@@ -7,14 +7,20 @@ const ctx = overlay.getContext('2d', { willReadFrequently: true });
 const display = document.getElementById('display');
 const overlayMode = document.getElementById('overlayMode');
 
+
+
 // State
 let imageList = [];
 let maskList = [];
+let workingMasks = [];
 let currentIndex = 0;
 
 // When the image finishes loading, resize canvas to match and update overlay
 display.onload = function() {
   overlay.width = display.width;
   overlay.height = display.height;
+  paintCanvas.width = display.width;
+  paintCanvas.height = display.height;
   updateOverlay();
 };
+

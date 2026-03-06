@@ -51,6 +51,7 @@ function drawMask() {
     ctx.drawImage(maskImg, 0, 0, overlay.width, overlay.height);
     const maskData = ctx.getImageData(0, 0, overlay.width, overlay.height);
     const grid = buildMaskGrid(maskData.data);
+    workingMasks[currentIndex] = grid;
 
     for (let i = 0; i < grid.length; i++) {
       const pixel = i * 4;
@@ -137,3 +138,4 @@ function drawOutline() {
     ctx.putImageData(maskData, 0, 0);
   };
 }
+
