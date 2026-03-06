@@ -90,10 +90,16 @@ input[type="range"] {
 /* This container holds both the image and canvas stacked */
 .canvasContainer {
   position: relative;
+  width: 600px;
+  height: 600px;
+  overflow: hidden;
+  border: 2px solid #ccc;
+  display: inline-block; 
 }
 
+
 #display {
-  max-width: 100%;
+  max-width: 100%; 
   max-height: 80vh;
   display: block;
   transform-origin: center center;
@@ -106,4 +112,5 @@ input[type="range"] {
   left: 0;
   transform-origin: center center;
 }
+
 
