@@ -1,5 +1,5 @@
   // Wait until page loads Comfrim and next image button (it works but you have 
-  //to upload new image and mask to see pervious image will be underneath the 
+  //to upload new image and mask to see {pervious image and mask be stored in a array }
   //new mask and image you upload )
 document.addEventListener("DOMContentLoaded", () => {
 
