@@ -15,7 +15,7 @@ let maskList = [];
 let workingMasks = [];
 let currentIndex = 0;
 
-// When the image finishes loading, resize canvas to match and update overlay
+// When the image finishes loading, resize canvas element to match and update overlay
 display.onload = function() {
   overlay.width = display.width;
   overlay.height = display.height;

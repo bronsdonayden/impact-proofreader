@@ -39,8 +39,10 @@ overlay.addEventListener("mousemove", (e) => {
   if (!workingMasks[currentIndex]) return;
 
   const rect = overlay.getBoundingClientRect();
-  const x = e.clientX - rect.left;
-  const y = e.clientY - rect.top;
+  const scaleX = overlay.width / rect.width;
+  const scaleY = overlay.height / rect.height;
+  const x = Math.floor((e.clientX - rect.left) * scaleX);
+  const y = Math.floor((e.clientY - rect.top) * scaleY);
   const w = overlay.width;
   const size = Math.floor(brushSize.value / 2);
 
