@@ -19,8 +19,6 @@ let currentIndex = 0;
 display.onload = function() {
   overlay.width = display.width;
   overlay.height = display.height;
-  paintCanvas.width = display.width;
-  paintCanvas.height = display.height;
   updateOverlay();
 };
 

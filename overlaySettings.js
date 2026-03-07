@@ -44,6 +44,10 @@ function buildMaskGrid(data) {
 function drawMask() {
   if (maskList.length === 0) return;
 
+  if(workingMasks[currentIndex]){
+    renderMaskFromGrid(workingMasks[currentIndex]);
+    return;
+  }
   const maskImg = new Image();
   maskImg.src = maskList[currentIndex];
 
@@ -52,47 +56,51 @@ function drawMask() {
     const maskData = ctx.getImageData(0, 0, overlay.width, overlay.height);
     const grid = buildMaskGrid(maskData.data);
     workingMasks[currentIndex] = grid;
+    renderMaskFromGrid(grid);
+  }};
 
-    for (let i = 0; i < grid.length; i++) {
-      const pixel = i * 4;
-
-      if (grid[i]) {
-        // Part of mask — color it red with 30% opacity
-        maskData.data[pixel] = 255;       // R
-        maskData.data[pixel + 1] = 0;     // G
-        maskData.data[pixel + 2] = 0;     // B
-        maskData.data[pixel + 3] = 80;    // A
-      } else {
-        // Not part of mask — fully transparent
-        maskData.data[pixel] = 0;
-        maskData.data[pixel + 1] = 0;
-        maskData.data[pixel + 2] = 0;
-        maskData.data[pixel + 3] = 0;
-      }
+  function renderMaskFromGrid(grid) {
+  const imageData = ctx.createImageData(overlay.width, overlay.height);
+  for (let i = 0; i < grid.length; i++) {
+    const pixel = i * 4;
+    if (grid[i]) {
+      imageData.data[pixel] = 255;
+      imageData.data[pixel + 1] = 0;
+      imageData.data[pixel + 2] = 0;
+      imageData.data[pixel + 3] = 80;
     }
-
-    ctx.clearRect(0, 0, overlay.width, overlay.height);
-    ctx.putImageData(maskData, 0, 0);
-  };
+  }
+  ctx.clearRect(0, 0, overlay.width, overlay.height);
+  ctx.putImageData(imageData, 0, 0);
 }
 
 // Draws only the outline of the current mask
 function drawOutline() {
   if (maskList.length === 0) return;
 
+  if(workingMasks[currentIndex]){
+    renderOutlineFromGrid(workingMasks[currentIndex]);
+    return;
+  }
   const maskImg = new Image();
   maskImg.src = maskList[currentIndex];
 
-  maskImg.onload = function() {
+    maskImg.onload = function() {
     ctx.drawImage(maskImg, 0, 0, overlay.width, overlay.height);
     const maskData = ctx.getImageData(0, 0, overlay.width, overlay.height);
+    const grid = buildMaskGrid(maskData.data);
+    workingMasks[currentIndex] = grid;
+    renderOutlineFromGrid(grid);
+}};
+  
+
+
+  function renderOutlineFromGrid(grid){
+    
+    const imageData = ctx.createImageData(overlay.width, overlay.height);
     const width = overlay.width;
     const height = overlay.height;
 
-    // Step 1: Build a clean true/false grid from the raw pixels
-    const grid = buildMaskGrid(maskData.data);
-
-    // Step 2: Loop through the grid and find outline pixels
     for (let i = 0; i < grid.length; i++) {
       const pixel = i * 4;
       const row = Math.floor(i / width);
@@ -100,10 +108,10 @@ function drawOutline() {
 
       // If not part of mask, make transparent
       if (!grid[i]) {
-        maskData.data[pixel] = 0;
-        maskData.data[pixel + 1] = 0;
-        maskData.data[pixel + 2] = 0;
-        maskData.data[pixel + 3] = 0;
+        imageData.data[pixel] = 0;
+        imageData.data[pixel + 1] = 0;
+        imageData.data[pixel + 2] = 0;
+        imageData.data[pixel + 3] = 0;
         continue;
       }
 
@@ -121,21 +129,22 @@ function drawOutline() {
 
       if (isOutline) {
         // Color it green
-        maskData.data[pixel] = 0;         // R
-        maskData.data[pixel + 1] = 255;   // G
-        maskData.data[pixel + 2] = 0;     // B
-        maskData.data[pixel + 3] = 255;   // A
+        imageData.data[pixel] = 0;         // R
+        imageData.data[pixel + 1] = 255;   // G
+        imageData.data[pixel + 2] = 0;     // B
+        imageData.data[pixel + 3] = 255;   // A
       } else {
         // Interior — make transparent
-        maskData.data[pixel] = 0;
-        maskData.data[pixel + 1] = 0;
-        maskData.data[pixel + 2] = 0;
-        maskData.data[pixel + 3] = 0;
+        imageData.data[pixel] = 0;
+        imageData.data[pixel + 1] = 0;
+        imageData.data[pixel + 2] = 0;
+        imageData.data[pixel + 3] = 0;
       }
     }
 
     ctx.clearRect(0, 0, width, height);
-    ctx.putImageData(maskData, 0, 0);
+    ctx.putImageData(imageData, 0, 0);
   };
-}
 
+
+  
