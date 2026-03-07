@@ -30,11 +30,11 @@ nextButton.addEventListener('click', function() {
   if (imageList.length === 0) return;
 
   currentIndex++;
-  document.getElementById('imageCounter').textContent = `${currentIndex + 1} / ${imageList.length}`;
 
   if (currentIndex >= imageList.length) {
     currentIndex = 0;
   }
+  document.getElementById('imageCounter').textContent = `${currentIndex + 1} / ${imageList.length}`;
 
   display.src = imageList[currentIndex];
 });
@@ -44,10 +44,10 @@ prevButton.addEventListener('click', function(){
   if(imageList.length === 0) return;
 
   currentIndex--;
-  document.getElementById('imageCounter').textContent = `${currentIndex + 1} / ${imageList.length}`;
-
   if(currentIndex <= 0 ){
     currentIndex = 0;
   }
+  document.getElementById('imageCounter').textContent = `${currentIndex + 1} / ${imageList.length}`;
+
   display.src = imageList[currentIndex];
 });

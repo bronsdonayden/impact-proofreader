@@ -1,48 +1,70 @@
-  // Wait until page loads Comfrim and next image button (it works but you have 
-  //to upload new image and mask to see {pervious image and mask be stored in a array }
-  //new mask and image you upload )
+const paintButton = document.getElementById("paintButton");
+const eraseButton = document.getElementById("eraseButton");
+const brushSize = document.getElementById("brushSize");
+const resetMaskButton = document.getElementById("resetMaskButton");
 
+let paintToggle = false;
+let eraseToggle = false;
+let isDrawing = false;
 
-  const paintButton = document.getElementById("paintButton");
-  const eraseButton = document.getElementById("eraseButton");
-  const brushSize = document.getElementById("brushSize");
+overlay.addEventListener("mousedown", () => isDrawing = true);
+overlay.addEventListener("mouseup", () => isDrawing = false);
+overlay.addEventListener("mouseleave", () => isDrawing = false);
+
+paintButton.addEventListener("click", () => {
+  paintToggle = !paintToggle;
+  eraseToggle = false;
+});
+eraseButton.addEventListener("click", () => {
+  eraseToggle = !eraseToggle;
+  paintToggle = false;
+});
+
+resetMaskButton.addEventListener("click", () => {
+  const maskImg = new Image();
   
+  maskImg.onload = function() {
+    ctx.clearRect(0, 0, overlay.width, overlay.height);
+    ctx.drawImage(maskImg, 0, 0, overlay.width, overlay.height);
+    const maskData = ctx.getImageData(0, 0, overlay.width, overlay.height);
+    workingMasks[currentIndex] = buildMaskGrid(maskData.data);
+    updateOverlay();
+  };
+  maskImg.src = maskList[currentIndex];
+});
 
-  let paintToggle = false; 
-  let eraseToggle = false;
-  let isDrawing = false;
+overlay.addEventListener("mousemove", (e) => {
+  if (!isDrawing) return;
+  if (!paintToggle && !eraseToggle) return;
+  if (!workingMasks[currentIndex]) return;
 
-  overlay.addEventListener("mousedown", () => isDrawing = true);
-  overlay.addEventListener("mouseup", () => { isDrawing = false; ctx.beginPath(); });
-  overlay.addEventListener("mouseleave", () => { isDrawing = false; ctx.beginPath(); });
-    
-      // --- Tool buttons ---
-  paintButton.addEventListener("click", () =>{
-    paintToggle = !paintToggle;
-    eraseToggle = false;
-  });
-  eraseButton.addEventListener("click", () =>{
-    eraseToggle = !eraseToggle;
-    paintToggle = false;
-  });
-  
+  const rect = overlay.getBoundingClientRect();
+  const x = e.clientX - rect.left;
+  const y = e.clientY - rect.top;
+  const w = overlay.width;
+  const size = Math.floor(brushSize.value / 2);
 
-  
-    overlay.addEventListener("mousemove", (e) => {
-      if (paintToggle == false && eraseToggle == false) return;
-      const rect = overlay.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-  
-      if (paintToggle && isDrawing) {
-        ctx.fillStyle = "white";
-        ctx.fillRect(x - 2.5, y - 2.5, 5, 5);
-      } else if (eraseToggle && isDrawing) {
-        
-        ctx.clearRect(x - brushSize.value / 2, y - brushSize.value / 2, brushSize.value, brushSize.value);
+  if (paintToggle) { // Vibe coded the shit out of this. it works so i trust
+    for (let dy = -size; dy <= size; dy++) {
+      for (let dx = -size; dx <= size; dx++) {
+        const px = Math.floor(x) + dx;
+        const py = Math.floor(y) + dy;
+        if (px >= 0 && px < w && py >= 0 && py < overlay.height) {
+          workingMasks[currentIndex][py * w + px] = true;
+        }
       }
-    });
-  
- 
-    
- 
+    }
+  } else if (eraseToggle) {
+    for (let dy = -size; dy <= size; dy++) {
+      for (let dx = -size; dx <= size; dx++) {
+        const px = Math.floor(x) + dx;
+        const py = Math.floor(y) + dy;
+        if (px >= 0 && px < w && py >= 0 && py < overlay.height) {
+          workingMasks[currentIndex][py * w + px] = false;
+        }
+      }
+    }
+  }
+
+  updateOverlay();
+});
