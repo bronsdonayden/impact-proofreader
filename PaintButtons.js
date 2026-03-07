@@ -42,7 +42,7 @@ overlay.addEventListener("mousemove", (e) => {
   const w = overlay.width;
   const size = Math.floor(brushSize.value / 2);
 
-  if (paintToggle) {
+  if (paintToggle) { // Vibe coded the shit out of this. it works so i trust
     for (let dy = -size; dy <= size; dy++) {
       for (let dx = -size; dx <= size; dx++) {
         const px = Math.floor(x) + dx;
