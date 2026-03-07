@@ -22,13 +22,15 @@ eraseButton.addEventListener("click", () => {
 
 resetMaskButton.addEventListener("click", () => {
   const maskImg = new Image();
-  maskImg.src = maskList[currentIndex];
+  
   maskImg.onload = function() {
+    ctx.clearRect(0, 0, overlay.width, overlay.height);
     ctx.drawImage(maskImg, 0, 0, overlay.width, overlay.height);
     const maskData = ctx.getImageData(0, 0, overlay.width, overlay.height);
     workingMasks[currentIndex] = buildMaskGrid(maskData.data);
     updateOverlay();
   };
+  maskImg.src = maskList[currentIndex];
 });
 
 overlay.addEventListener("mousemove", (e) => {
