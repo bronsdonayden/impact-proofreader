@@ -1,66 +1,75 @@
+/* Setting it to default size */
+html{
+  font-size: 12px;
+}
+main, body, div, footer, header, h1, h2, p {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
 body {
   background: white;
   color: #ccc;
-  font-family: sans-serif;
+  font-family:'Times New Roman', Times, serif;
   margin: 0;
   padding: 20px;
 }
 
-header {
+header{
   text-align: center;
-  margin-bottom: 20px;
-  margin-top: 5px;
-  font-size: 14px;
-  color: #666;
-  letter-spacing: 1px;
+  margin: 10px 0 30px 0;
+  padding-bottom: 20px;        
 }
-
-h1 {
-  font-weight: 300;
+ 
+header, h1 {
+  font-size: 32px;          
+  font-weight: 600;         
   letter-spacing: 2px;
-  color: #88bbdd;
+  color: black;
 }
+ header p{
+  font-size: 16px;
+  font-weight: 300;
+  color: #666;
+  margin-top: 5px;
+  letter-spacing: 1px;
+ }
 
-footer {
-  text-align: center;
-  margin-top: 40px;
-  color: #555;
-  font-size: 12px;
-}
-
-main {
+ main {
   display: flex;
   gap: 20px;
 }
 
+/* Sidebar container */
 .Sidebar {
-  width: 220px;
-  height: 90vh;
-  overflow-y: auto;
-  padding: 10px;
+  width: 220px;           
+  height: 100vh;          
+  padding: 10px;          
   border-right: 1px solid #333;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;              
 }
 
-/* Fixed: was .Tool-Group, now matches HTML */
+/* Tool groups */
 .toolGroup {
-  .toolGroup {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    margin-bottom: 0;
-    width: 150px; /* fixed width for alignment */
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 100%;
+  margin: 0;              /
 }
 
-button, select, input[type="file"] {
+
+button, select, input[type="file"], input[type="range"] {
   background: #222;
   color: #ccc;
   border: 1px solid #444;
-  padding: 6px 10px;
+  padding: 6px;           
   border-radius: 4px;
   cursor: pointer;
-  width: 100%;
-  font-size: 13px;
+  width: 100;           
+  text-align: left;       
 }
 
 button:hover, select:hover {
@@ -69,13 +78,9 @@ button:hover, select:hover {
 
 label {
   display: block;
-  font-size: 12px;
-  color: #888;
+  font-size: 14px;
+  color: black;
   margin-bottom: 4px;
-}
-
-input[type="range"] {
-  width: 100%;
 }
 
 /* Viewer sits next to the sidebar and centers its content */
@@ -87,22 +92,27 @@ input[type="range"] {
   padding: 20px;
 }
 
-/* This container holds both the image and canvas stacked */
-.canvasContainer {
-  position: relative;
-  width: 600px;
-  height: 600px;
+.Viewer {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
   overflow: hidden;
-  border: 2px solid #ccc;
-  display: inline-block; 
 }
 
+.canvasContainer {
+  position: relative;
+}
 
-#display {
-  max-width: 100%; 
-  max-height: 80vh;
+.canvasContainer img {
   display: block;
-  transform-origin: center center;
+}
+
+.canvasContainer canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 /* Canvas sits directly on top of the image */
@@ -110,13 +120,14 @@ input[type="range"] {
   position: absolute;
   top: 0;
   left: 0;
-  transform-origin: center center;
 }
 
 
-#imageCounter {
-  font-size: 16px;
-  font-weight: 300;
-  color: #888;
-  letter-spacing: 1px;
+footer {
+  text-align: center;
+  margin-top: 40px;
+  color: #555;
+  font-size: 12px;
 }
+
+ 

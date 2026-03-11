@@ -1,98 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <title>Impact WWebApp</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IMPACT WEBAPP</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-
-  <header>
+  <header> 
     <h1>Kidney & Spleen Ultrasound Images</h1>
-    <p class="subtitle">Mask Proofreading & Overlay Viewer</p>
+    <p> Mask proofreading & Overlay Viewer</p>
   </header>
-
-  <h2 id="imageCounter">0 / 0</h2>
-
   <main>
-    
-    <!-- Start Toolbar-->
+    <h2 id="imageCounter"> / 0</h2>
+
+    <!--Toolbar-->
     <div class="Sidebar">
-    
-      <!-- File loading -->
-      <div class="toolGroup"> 
-        <label for="images">Load Images</label>
-        <input type="file" id="images" accept=".png" multiple>
-      </div>
 
-      <div class="toolGroup">
-        <label for="masks">Load Masks</label>
-        <input type="file" id="masks" accept=".png" multiple>
-      </div>
+    <!-- File loading-->
+     <div class="toolGroup">
+      <label for="images">Load Images</label>
+      <input type="file" id="images" accept=".png" multiple>
+     </div>
 
-      <!-- Overlay Options -->
-      <div class="toolGroup">
-        <select id = "overlayMode">
-          <option>No Overlay</option>
-          <option>Outline Only</option>
-          <option>Transparent Overlay</option>
-        </select>
-      </div>
+     <div class="toolGroup">
+      <label for="masks">Load Masks</label>
+      <input type="file" id="masks" accept=".png" multiple>
+    </div>
 
-       <!-- Change Contrast and Opacity Slider -->
-       <div class="toolGroup">
-        <label>Contrast</label>
-        <input type="range" id = "contrastSlider" min="0" max="255" value="128">
-        <label>ImageOpacity</label>
-        <input type="range" id = "ImageOpacitySlider" min="0" max="255" value="128">
-        <label>OverlayOpacity</label>
-        <input type="range" id = "OverlayOpacitySlider" min="0" max="255" value="128">
-      </div>
-
-      <!-- Zoom -->
-      <div class="toolGroup">
-        <label>Zoom</label>
-        <input type="range" id="zoomSlider" min="1" max="3" value="1" step="0.1">
-      </div>
-
-      <!-- Next Image Button -->
-      <div class="toolGroup">
-        <button id="nextButton">Go to next image</button>
-      </div>
-      <div class = toolGroup>
-        <button id="prevButton">Go back to previous image</button>
-      </div>
-
-      
-    <!-- End Toolbar-->
-
-    <!-- Image Interaction Options -->
+    <!-- Overlay Options -->
     <div class="toolGroup">
-      <input type = "range" id = "brushSize" min = "1" max = "25" value ="5">
-      <button id="paintButton">Paint</button>
-      <button id="eraseButton">Erase</button>
-      <button id = "resetMaskButton">Reset Image</button>
-      <button id = "exportButton">Export</button>
-    </div>
+      <select id = "overlayMode">
+        <option>No Overlay</option>
+        <option>Outline Only</option>
+        <option>Transparent Overlay</option>
+      </select>
     </div>
 
-    <!-- Start Viewer -->
-    <div class="Viewer">
-      <div class="canvasContainer">
-        <img id="display" src="" alt="Image could not load">
-        <canvas id="overlay"></canvas>
-      </div>
+     <!-- Change Contrast and Opacity Slider -->
+     <div class="toolGroup">
+      <label>Contrast</label>
+      <input type="range" id = "contrastSlider" min="0" max="255" value="128">
+      <label>ImageOpacity</label>
+      <input type="range" id = "ImageOpacitySlider" min="0" max="255" value="128">
+      <label>OverlayOpacity</label>
+      <input type="range" id = "OverlayOpacitySlider" min="0" max="255" value="128">
     </div>
-     <!--End Viewer-->
 
+    <!-- Zoom -->
+    <div class="toolGroup">
+      <label>Zoom</label>
+      <input type="range" id="zoomSlider" min="1" max="3" value="1" step="0.1">
+    </div>
+
+    <!-- Next Image Button -->
+    <div class="toolGroup">
+      <button id="nextButton">Go to next image</button>
+    </div>
+    <div class = toolGroup>
+      <button id="prevButton">Go back to previous image</button>
+    </div>  
+  <!-- End Toolbar-->
+
+  <!-- Image Interaction Options -->
+  <div class="toolGroup">
+    <input type = "range" id = "brushSize" min = "1" max = "25" value ="5">
+    <button id="paintButton">Paint</button>
+    <button id="eraseButton">Erase</button>
+    <button id = "resetMaskButton">Reset Image</button>
+    <button id = "exportButton">Export</button>
+  </div>
+  </div>
+
+  <!-- Start Viewer -->
+  <div class="Viewer">
+    <div class="canvasContainer">
+      <img id="display" src="" alt="Image could not load">
+      <canvas id="overlay"></canvas>
+    </div>
+  </div>
+  <!--End Viewer-->
+
+    </div>
   </main>
-
+  
   <!-- Copyright because why not it makes the website seem super duper important-->
   <footer>
-    <p>&copy; 2026</p>
+    <p>&copy;2026</p>
   </footer>
 
+  <!--JavaScript-->
   <script src="main.js"></script>
   <script src="overlaySettings.js"></script>
   <script src="navigation.js"></script>
